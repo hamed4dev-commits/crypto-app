@@ -2,7 +2,6 @@ import { HashLoader } from "react-spinners";
 import TableRow from "../modules/TableRow";
 
 const TableCoin = ({ data, isLoading, error }) => {
-  console.log(data);
   if (error) return console.log(error);
   if (isLoading)
     return (

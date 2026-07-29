@@ -24,7 +24,12 @@ const Market = () => {
   return (
     <div className="h-dvh grid place-items-center">
       <Categories />
-      <TableCoin data={data} isLoading={isLoading} error={error} className="relative min-h-[400px]" />
+      <TableCoin
+        data={data}
+        isLoading={isLoading}
+        error={error}
+        className="relative min-h-[400px]"
+      />
       <div>paginate</div>
     </div>
   );
