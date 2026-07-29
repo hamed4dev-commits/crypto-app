@@ -5,10 +5,11 @@ import { useEffect } from "react";
 import getCoinList from "../../core/configs/cryptoApi";
 import { getMarket } from "../../core/services/queries";
 import { HashLoader } from "react-spinners";
-import TableCoin from "../modules/TableCoin";
+import TableCoin from "../templates/TableCoin";
+import Categories from "../modules/Categories";
 
 const Market = () => {
-  const { data, isPending, error } = getMarket();
+  const { data, isLoading, error } = getMarket();
   // console.log(data);
   // useEffect(() => {
   //   const getData = async () => {
@@ -19,11 +20,11 @@ const Market = () => {
   //   };
   //   getData();
   // }, []);
-  if (isPending) return <HashLoader color="#000fd8" />;
+  if (isLoading) return <HashLoader color="#000fd8" />;
   return (
-    <div>
-      <div>categories</div>
-      <TableCoin data={data}  />
+    <div className="h-dvh grid place-items-center">
+      <Categories />
+      <TableCoin data={data} isLoading={isLoading} error={error} className="relative min-h-[400px]" />
       <div>paginate</div>
     </div>
   );

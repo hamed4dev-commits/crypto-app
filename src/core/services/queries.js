@@ -7,7 +7,7 @@ export const getMarket = () => {
       "coins/markets?vs_currency=usd&per_page=20&page=1&price_change_percentage=24",
     );
   const queryKey = ["all-market"];
-  return useQuery({ queryKey, queryFn });
+  return useQuery({ queryKey, queryFn, staleTime: 1000 * 60 * 2 });
 };
 
 // export const getSingleCoin = () => {
