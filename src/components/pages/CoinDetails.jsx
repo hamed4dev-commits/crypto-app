@@ -58,29 +58,26 @@ const CoinDetails = () => {
         </div>
       </div>
       <div>
-        <ChartComponent
-          data={converteData(chartData, type)}
-          type={type}
-        />
+        <ChartComponent data={converteData(chartData, type)} type={type} />
       </div>
 
       <div className="grid grid-cols-2 gap-4 mt-6" onClick={typeHandler}>
-        <div className="rounded-lg bg-gray-900 p-4">
+        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
           <p>Current price</p>
           <strong>{coin?.current_price?.toLocaleString()}</strong>
-        </div>
-        <div className="rounded-lg bg-gray-900 p-4">
+        </button>
+        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
           <p>Market cap</p>
           <strong>{coin?.market_cap?.toLocaleString()}</strong>
-        </div>
-        <div className="rounded-lg bg-gray-900 p-4">
+        </button>
+        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
           <p>24h change</p>
           <strong>{coin?.price_change_percentage_24h?.toFixed(2)}%</strong>
-        </div>
-        <div className="rounded-lg bg-gray-900 p-4">
+        </button>
+        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
           <p>Volume</p>
           <strong>{coin?.total_volume?.toLocaleString()}</strong>
-        </div>
+        </button>
       </div>
 
       <div className="mt-6">
@@ -93,7 +90,7 @@ const CoinDetails = () => {
 export default CoinDetails;
 
 const ChartComponent = ({ data, type }) => {
-  console.log(data)
+  console.log(data);
   return;
   <ResponsiveContainer width="100%" height="100%">
     <LineChart width={500} height={500} data={data}>
@@ -104,8 +101,8 @@ const ChartComponent = ({ data, type }) => {
         stroke="blueviolet"
         strokeWidth={"2px"}
       />
-      <YAxis dataKey={type} domain={["auto" , "auto"]} />
-      <XAxis dataKey={"date"}  />
+      <YAxis dataKey={type} domain={["auto", "auto"]} />
+      <XAxis dataKey={"date"} />
       <Tooltip />
       <Legend />
     </LineChart>
