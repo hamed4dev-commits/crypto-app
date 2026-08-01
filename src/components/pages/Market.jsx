@@ -1,7 +1,7 @@
 import axios from "axios";
 // import getCoinList  from "../../services/cryptoApi"
 import api from "../../core/configs/cryptoApi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import getCoinList from "../../core/configs/cryptoApi";
 import { getMarket } from "../../core/services/queries";
 import { HashLoader } from "react-spinners";
@@ -10,6 +10,7 @@ import Categories from "../modules/Categories";
 
 const Market = () => {
   const { data, isLoading, error } = getMarket();
+  const [currency, setCurrency] = useState("usd");
   // console.log(data);
   // useEffect(() => {
   //   const getData = async () => {
@@ -25,6 +26,8 @@ const Market = () => {
     <div className="h-dvh grid place-items-center">
       <Categories />
       <TableCoin
+        currency={currency}
+        setCurrency={setCurrency}
         data={data}
         isLoading={isLoading}
         error={error}

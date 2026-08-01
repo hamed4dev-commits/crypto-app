@@ -1,13 +1,12 @@
 import { HashLoader } from "react-spinners";
 import TableRow from "../modules/TableRow";
 
-const TableCoin = ({ data, isLoading, error }) => {
+const TableCoin = ({ data, isLoading, error, currency, setCurrency }) => {
   if (error) return console.log(error);
   if (isLoading)
     return (
       <div className="absolute inset-0 flex items-center justify-center">
-        <HashLoader 
-        size={80} />
+        <HashLoader size={80} />
       </div>
     );
 
@@ -20,12 +19,12 @@ const TableCoin = ({ data, isLoading, error }) => {
           <th>price</th>
           <th>changes 24H</th>
           <th>market</th>
-          <th >status</th>
+          <th>status</th>
         </tr>
       </thead>
       <tbody>
         {data.data?.map((coin) => (
-          <TableRow data={coin} key={coin.id} />
+          <TableRow currency={currency} data={coin} key={coin.id} />
         ))}
       </tbody>
     </table>
