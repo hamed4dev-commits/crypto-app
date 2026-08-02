@@ -21,7 +21,7 @@ const Market = () => {
   //   };
   //   getData();
   // }, []);
-  if (isLoading) return <HashLoader color="#000fd8" />;
+  if (isLoading) return <HashLoader color="#000fd8" className="h-dvh" />;
   return (
     <div className="h-dvh grid place-items-center">
       <Categories />

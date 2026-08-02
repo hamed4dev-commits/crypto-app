@@ -49,7 +49,7 @@ const CoinDetails = () => {
   };
 
   return (
-    <div className="p-6 text-white">
+    <div className="h-full p-6 text-white">
       <div className="flex items-center gap-4">
         <img src={coin?.image} alt={coin?.name} className="w-16 h-16" />
         <div>
@@ -57,26 +57,22 @@ const CoinDetails = () => {
           <p className="text-gray-400 uppercase">{coin?.symbol}</p>
         </div>
       </div>
-      <div>
+      <div className="min-h-110 w-full">
         <ChartComponent data={converteData(chartData, type)} type={type} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-6" onClick={typeHandler}>
-        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
-          <p>Current price</p>
-          <strong>{coin?.current_price?.toLocaleString()}</strong>
+      <div className="flex gap-4 mt-6" onClick={typeHandler}>
+        <button className="rounded-lg bg-gray-900 p2 cursor-pointer">
+          Prices
         </button>
         <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
-          <p>Market cap</p>
-          <strong>{coin?.market_cap?.toLocaleString()}</strong>
+          Market caps
         </button>
+        {/* <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
+          24h change
+        </button> */}
         <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
-          <p>24h change</p>
-          <strong>{coin?.price_change_percentage_24h?.toFixed(2)}%</strong>
-        </button>
-        <button className="rounded-lg bg-gray-900 p-4 cursor-pointer">
-          <p>Volume</p>
-          <strong>{coin?.total_volume?.toLocaleString()}</strong>
+          Total Volumes
         </button>
       </div>
 
@@ -90,21 +86,27 @@ const CoinDetails = () => {
 export default CoinDetails;
 
 const ChartComponent = ({ data, type }) => {
-  console.log(data);
-  return;
-  <ResponsiveContainer width="100%" height="100%">
-    <LineChart width={500} height={500} data={data}>
-      <CartesianGrid />
-      <Line
-        type={"monotone"}
-        dataKey={type}
-        stroke="blueviolet"
-        strokeWidth={"2px"}
-      />
-      <YAxis dataKey={type} domain={["auto", "auto"]} />
-      <XAxis dataKey={"date"} />
-      <Tooltip />
-      <Legend />
-    </LineChart>
-  </ResponsiveContainer>;
+  if (!data?.length) {
+    return <div className="text-gray-400">Chart data is unavailable.</div>;
+  }
+
+  return (
+    <div className="h-full w-full">
+      <ResponsiveContainer height={500} >
+        <LineChart data={data}>
+          <CartesianGrid stroke="#404042" />
+          <Line
+            type="monotone"
+            dataKey={type}
+            stroke="blueviolet"
+            strokeWidth={2}
+          />
+          <YAxis dataKey={type} domain={["auto", "auto"]} />
+          <XAxis dataKey="date" />
+          <Tooltip />
+          <Legend />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 };
