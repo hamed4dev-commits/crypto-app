@@ -11,10 +11,10 @@ const Pagination = ({ initial, setInitial }) => {
     setInitial((perv) => ({ ...perv, page: currentPage + 1 }));
   };
   return (
-    <div className="h-5 w-full flex gap-4 justify-center">
-      <button onClick={pervHandler}>prev</button>
-      <p>1</p>
-      <p>2</p>
+    <div className="h-8 w-full flex gap-4 justify-center align-middle py-1 text-center ">
+      <button className="px-2 border-1 rounded-xl text-center " onClick={pervHandler}>prev</button>
+      <p className="border-1 rounded p-1  ">1</p>
+      <p className="border-1 rounded p-1  ">2</p>
       <span>...</span>
       {initial?.page > 2 && initial?.page < 10 && (
         // pages.map((i, index) => {
@@ -26,8 +26,8 @@ const Pagination = ({ initial, setInitial }) => {
         </>
       )}
 
-      <p>10</p>
-      <p>11</p>
+      <p className="border-1 rounded p-1  ">10</p>
+      <p className="border-1 rounded p-1  ">11</p>
       <button onClick={nextHandler}>next</button>
     </div>
   );
