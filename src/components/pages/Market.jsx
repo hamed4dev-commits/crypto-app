@@ -3,14 +3,22 @@ import axios from "axios";
 import api from "../../core/configs/cryptoApi";
 import { useEffect, useState } from "react";
 import getCoinList from "../../core/configs/cryptoApi";
-import { getMarket } from "../../core/services/queries";
+import { useGetMarket } from "../../core/services/queries";
 import { HashLoader } from "react-spinners";
 import TableCoin from "../templates/TableCoin";
 import Categories from "../modules/Categories";
+import Pagination from "../modules/Pagination";
 
 const Market = () => {
-  const { data, isLoading, error } = getMarket();
-  const [currency, setCurrency] = useState("usd");
+  //  const [currency, setCurrency] = useState("usd");
+  const [initial, setInitial] = useState({
+    currency: "usd",
+    page: 4,
+    order: "desc",
+  });
+  const { data, isLoading, error } = useGetMarket(initial);
+  // console.log(initial);
+
   // console.log(data);
   // useEffect(() => {
   //   const getData = async () => {
@@ -21,19 +29,25 @@ const Market = () => {
   //   };
   //   getData();
   // }, []);
-  if (isLoading) return <HashLoader color="#000fd8" className="h-dvh" />;
+
+  if (isLoading)
+    return (
+      <div className="h-dvh grid place-items-center">
+        <HashLoader color="#000fd8" />
+      </div>
+    );
   return (
-    <div className="h-dvh grid place-items-center">
-      <Categories />
+    <div className="min-h-dvh grid place-items-center">
+      <Categories initial={initial} setInitial={setInitial} />
       <TableCoin
-        currency={currency}
-        setCurrency={setCurrency}
+        initial={initial}
+        setInitial={setInitial}
         data={data}
         isLoading={isLoading}
         error={error}
         className="relative min-h-[400px]"
       />
-      <div>paginate</div>
+      <Pagination initial={initial} setInitial={setInitial} />
     </div>
   );
 };

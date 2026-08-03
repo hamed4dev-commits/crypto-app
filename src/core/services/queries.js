@@ -3,12 +3,12 @@ import api from "../configs/cryptoApi";
 
 const staleTime = 1000 * 60 * 2;
 
-const getMarket = () => {
+const useGetMarket = (initial) => {
   const queryFn = () =>
     api.get(
-      "coins/markets?vs_currency=usd&per_page=20&page=1&price_change_percentage=24",
+      `coins/markets?vs_currency=${initial?.currency}&per_page=20&page=${initial?.page}&order=market_cap_${initial?.order}&price_change_percentage=24`,
     );
-  const queryKey = ["all-market"];
+  const queryKey = ["all-market",initial];
   return useQuery({ queryKey, queryFn, staleTime });
 };
 
@@ -19,13 +19,13 @@ const useCoinChart = (coin, currency = "usd") => {
   return useQuery({ queryKey, queryFn, staleTime });
 };
 
-const singleCoin = (coin) => {
+const useSingleCoin = (coin) => {
   const queryFn = () => api.get(`coins/${coin}`);
   const queryKey = ["single-coin", coin];
   return useQuery({ queryKey, queryFn, staleTime });
 };
 
-export { getMarket, useCoinChart, singleCoin };
+export { useGetMarket, useCoinChart, useSingleCoin };
 
 // export const getSingleCoin = () => {
 //     const queryFn = ()

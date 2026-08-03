@@ -1,7 +1,7 @@
 import { PiChartLineDownLight, PiChartLineUpLight } from "react-icons/pi";
 import { Link, useNavigate, useSearchParams } from "react-router";
 
-const TableRow = ({ data, currency }) => {
+const TableRow = ({ data, initial }) => {
   
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -16,10 +16,10 @@ const TableRow = ({ data, currency }) => {
   } = data;
   return (
     <tr
-      className="odd:bg-gray-800 border-0 rounded-full text-wrap cursor-pointer"
+      className="odd:bg-gray-800 border-0 rounded-b-full text-wrap cursor-pointer"
       onClick={() => {
         // setSearchParams(`?currency=${currency}`);
-        navigate(`/market/${id}?currency=${currency}`);
+        navigate(`/market/${id}?currency=${initial.currency}`);
       }}
     >
       <td>

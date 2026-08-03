@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useCoinChart, getMarket } from "../../core/services/queries";
+import { useCoinChart, useGetMarket } from "../../core/services/queries";
 import { useParams, useSearchParams } from "react-router";
 import { converteData } from "../helpers/convertData";
 import { useState } from "react";
@@ -23,7 +23,7 @@ const CoinDetails = () => {
     data: marketData,
     isLoading: isMarketLoading,
     error: marketError,
-  } = getMarket();
+  } = useGetMarket();
   const {
     data: chartData,
     isLoading: isChartLoading,

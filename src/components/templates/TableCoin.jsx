@@ -1,19 +1,20 @@
 import { HashLoader } from "react-spinners";
 import TableRow from "../modules/TableRow";
 
-const TableCoin = ({ data, isLoading, error, currency, setCurrency }) => {
+const TableCoin = ({ data, error, isLoading, initial, setInitial }) => {
   if (error) return console.log(error);
+
   if (isLoading)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
-        <HashLoader size={80} />
+      <div className="h-full grid place-items-center ">
+        <HashLoader size={70} color="#000fd8" />
       </div>
     );
 
   return (
-    <table className="w-full gap">
+    <table className="w-full ">
       <thead>
-        <tr className="nth-last: mr-3">
+        <tr>
           <th>coin</th>
           <th>name</th>
           <th>price</th>
@@ -23,8 +24,9 @@ const TableCoin = ({ data, isLoading, error, currency, setCurrency }) => {
         </tr>
       </thead>
       <tbody>
+        
         {data.data?.map((coin) => (
-          <TableRow currency={currency} data={coin} key={coin.id} />
+          <TableRow initial={initial} data={coin} key={coin.id} />
         ))}
       </tbody>
     </table>

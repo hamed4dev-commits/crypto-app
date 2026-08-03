@@ -1,4 +1,4 @@
-@import "tailwindcss";
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -50,9 +50,12 @@
     filter: invert(1) brightness(2);
   }
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
+  padding: 0;
 }
 
 #root {
