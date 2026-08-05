@@ -13,7 +13,7 @@ const Market = () => {
   //  const [currency, setCurrency] = useState("usd");
   const [initial, setInitial] = useState({
     currency: "usd",
-    page: 4,
+    page: 1,
     order: "desc",
   });
   const { data, isLoading, error } = useGetMarket(initial);
@@ -45,7 +45,7 @@ const Market = () => {
         data={data}
         isLoading={isLoading}
         error={error}
-        className="relative min-h-[400px]"
+        // className="relative min-h-[400px]"
       />
       <Pagination initial={initial} setInitial={setInitial} />
     </div>
